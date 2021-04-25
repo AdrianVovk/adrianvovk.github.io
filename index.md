@@ -5,7 +5,23 @@
 layout: home
 ---
 
-> The “home” tab should be the first page that appears when anyone visits your site.  Most of the design options in WordPress will automatically include this as the first tab.  You should make this page your “static” front page.   As it is the first page your visitors will see, it should make a good first impression.  Think of this tab as equal parts welcome, cover letter, and navigation instructions.  It serves many of the same functions as the cover letter and should: 
-> - serve as an introduction to you (the “you” interested in applying for jobs in your field),
-> - detail your interest in your chosen field (Civil Engineering, Marketing, etc.), and
-> - provide an overview of the information contained on your site (and where to find it).
+Hello! I’m Adrian and I am a first-year Computer Science and Engineering major
+at The Ohio State University. I’m passionate about complex software stacks and
+their integration into user experience. I believe that apps cannot provide users
+with great experiences if the platform they are running on is not designed from
+the ground up for UX. Analogously, a platform cannot provide a great user experience
+unless its internals and code are approachable. Quality breeds quality.
+
+![Me](/assets/profilepic.jpg)
+
+I started programming when I was nine years old, and since then I’ve been working
+to improve my computer science, engineering, and teamwork skills. I am deeply interested
+in how computers work at the low level, and I will take many OS-development classes
+at my university. The huge complexity that emerges out of small components all
+interacting together in simple predefined ways fascinates me. I am a big advocate
+for Free Open Source Software, and I have contributed code to various open source
+projects through my work.
+
+This website is my portfolio: a detailed explanation of my career goals can be
+found {here}, my standard resume can be found {here}, and an overview of some of
+the projects I’ve worked on can be found {here}.

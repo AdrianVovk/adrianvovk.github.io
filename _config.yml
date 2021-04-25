@@ -32,6 +32,9 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # Build settings
 theme: minima
 
+minima:
+  skin: dark
+
 # For a blog
 #plugins:
 #  - jekyll-feed
