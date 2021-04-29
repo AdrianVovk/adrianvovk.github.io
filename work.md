@@ -63,7 +63,7 @@ the robot would not only get penalized points-wise but it could also be a safety
 risk to itself and to the people around it. My team received the Excellence in
 Control Award for my software work on this project.
 
-Project websites:
+<p style="margin-bottom: 0px;">Project websites:</p>
 - [2018-2019 Season](https://github.com/us-robotics/RoverRuckus)
 - [2019-2020 Season](https://github.com/us-robotics/SkyStone)
 
