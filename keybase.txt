@@ -1,0 +1,69 @@
+==================================================================
+https://keybase.io/adrianvovk
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://adrianvovk.me
+  * I am adrianvovk (https://keybase.io/adrianvovk) on keybase.
+  * I have a public key with fingerprint DE7E 2566 8C8D 3A48 7213  CCF6 DC3C BEB7 1741 ADE4
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01016667bd294ea4233dcaf8deded11d0eb4495f95bed3133e521a832a59d279472e0a",
+      "fingerprint": "de7e25668c8d3a487213ccf6dc3cbeb71741ade4",
+      "host": "keybase.io",
+      "key_id": "dc3cbeb71741ade4",
+      "kid": "01016667bd294ea4233dcaf8deded11d0eb4495f95bed3133e521a832a59d279472e0a",
+      "uid": "bab813e664c42269ac37956e6d216e19",
+      "username": "adrianvovk"
+    },
+    "service": {
+      "hostname": "adrianvovk.me",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1619819825,
+  "expire_in": 157680000,
+  "prev": "ae5731f320728446b50ecf4a0fa3a9e25803f57cf6b59788863cb0f7c2103da4",
+  "seqno": 7,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.13
+Comment: https://keybase.io/crypto
+
+yMImAnicrVJrbA1BFL5VhFsELdJ6b0WFqp2d3Z3dW/FIROKP4A8Jcs3unG23j91r
+7/bSVENK9Ar+ECQ09WqFikc84g+hTTVR/JD0thKJoGhVvNpGRCTMNvzip5lJJufM
+d77zzTmndWx6KJwm3DmfTF0s35/2sPl4RWjLgWpUJRguqxQiVUIpDF1QxiDuR0tt
+JkQEEYlIVVViMEmXgcoSxsyklsaAb4SYCIYs64qlKwYwjDAGRUJUwxJVdCYRXSYS
+iFTIFyzbKQIv5tmOz2kZEJAUVdVMjWEqa0RC2DQtlZnYNMAgiMiIMpB5YLEbDyK4
+OIPGocB2uY8b0SF5/8D/Z90VQ3QGNTSEQVVlU5YkVacmJrqigsokpALSA2AcPIeW
+A0dT5tnUSbiJUqE6X+D+hG1CUNrgL39hCridL8Q813dNt4w/Fft+LB4JQv3KWIDd
+Bkb0N0vUsB3GS8kjEuDFbdcRIogjTd8OaJGKdI0fSckXYHvM9iBqBwiFqJrIV5AH
+EkF6UAhGFpZEImmyrBqKCKYlU9GimOq8N5qILYXwlhiKTjRNU3mhRYuYEhIxo0Gh
+47DVcYUI4TJpEaeM20UO9Ss8EKpb7m0aHkoLh0aOGBaMWCg8evyfwZvTOyp0a0+y
+cWPmzRltp8Pja07O3TSqdWLT2byST/NSa5v6O8NFczccu/Jy6cD814emdR3eUrP5
+zN3kk1cZq+tTufdPXZkz+OJZRvesrlX1EH1QPivabxdmZX342XG9r7dh0XL54OSc
+FbdTqTPrtR1OY/3T551kwGveNZhdt3nn2zHp55TC5McFmazy8dSvxxsXfmGTVg73
+oZFId1vrJiRzflT1HL5wdNmquvZv3Xhf374S/86SjqbsdZHslnfm9Edv2i7V5s2+
+OhNfK1jTvvukltvnNzQXQublzv4JHTlHvt5uycj9fHB77Y2m99/TFk0p6M599mrv
+kfAxb2nJ1XGDJ3oWN9OteeaFFb8AX1ZGHQ==
+=xEHy
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/adrianvovk
+
+==================================================================
+
