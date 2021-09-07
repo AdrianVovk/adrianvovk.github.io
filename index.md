@@ -24,3 +24,5 @@ found [here](/goals), my standard resume can be found [here](/resume), and an
 overview of some of the projects I’ve worked on can be found [here](/work). You
 can find my contact information and links to my various Git accounts in the
 footer below.
+
+You can find my GPG public key [here](/assets/pubkey.gpg).
