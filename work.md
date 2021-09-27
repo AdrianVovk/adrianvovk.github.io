@@ -4,7 +4,7 @@ title: Sample Work
 permalink: /work
 ---
 
-### carbonOS
+### carbonOS (2018-present)
 
 carbonOS is a Linux-based operating system and software platform I created and
 maintain. Its main goal is to bring mobile-quality user experience (UX) to the desktop.
@@ -21,7 +21,7 @@ work and the apps they use to get it done. carbonOS replaces a package manager w
 two separate subsystems: an app store and a system update manager. Furthermore,
 carbonOS protects the operating system's files through various mechanisms. These technical
 decisions heavily impact user experience: the OS can now silently update itself in the
-background, and it can even undo failed updates. The very core design decisions of
+background, and it can even undo faled updates. The very core design decisions of
 carbonOS ensure that, to a user, it is a piece of software that always works and that
 they can rely on to run their apps.
 
@@ -41,10 +41,10 @@ rewarding.
 
 ---
 
-### FTC Robotics
+### FTC Robotics (2018-2020)
 
 The FIRST Tech Challenge is an engineering robotics competition I participated in
-in high school. I worked on a team of about 20 people, and we designed, documented,
+through high school. I worked on a team of about 20 people, and we designed, documented,
 programmed, and tested a robot to perform predefined tasks both autonomously and
 via remote control. I was both the team’s programmer and the team captain: I’d
 often have to make decisions that contradicted my interests as the programmer
@@ -65,15 +65,38 @@ Control Award for my software work on this project.
 
 ---
 
-### GEM
+### Substance SDK & KIDE (2016-2017)
+
+The Substance SDK was an effort to build a unified buildsystem and set of
+tools/libraries that would allow one set of Kotlin code (with very minimal,
+if any, platform-specific code) for different platforms, including
+Android, the JVM, Native CPU instructions, and iOS. I got as far as a Gradle
+plug-in that managed project structure and implemented building for
+JVM, Native, and (partially) Android targets. Complete Android support would
+have required me to start work on the SDK's standard library, which would
+implement many of the platform-specific APIs apps would be using.
+
+KIDE was supposed to be the official IDE for the Substance SDK. It was a fork
+of the Atom text editor and related plugins. It was nearly feature-complete,
+with good Git integration, project management, UI tweaks and usability improvements,
+and complete support for Gradle and specifically the Substance SDK plugin.
+
+Unfortunately, a comindation of schoolwork and burn-out killed this project.
+
+It's hard to give a single link to a "project website" because it's scattered
+across a bunch of git repos [here](https://github.com/SubstanceMobile)
+
+---
+
+### GEM (2014-2017)
 
 GEM was a music player app that I developed in response to a design language
 created by Google in 2014 called Material Design. At their demo, Google showcased
 a music player that many people, including myself, fell in love with on sight.
 Google later confirmed that their demo was just concept art and that they were
-not working on building a music player that looked like that. So, at the age of
-13 and with no experience in Java or Android, I decided to take up the challenge
-of building such an app.
+not working on building a music player that looked like that. So, with no
+experience in Java or Android, I decided to take up the challenge of building
+such an app myself.
 
 The project was a stunning success. I managed to implement Google’s concept UI in
 its entirety, and I published the app to the Google Play store to relatively
