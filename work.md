@@ -6,38 +6,115 @@ permalink: /work
 
 ### carbonOS (2018-present)
 
-carbonOS is a Linux-based operating system and software platform I created and
-maintain. Its main goal is to bring mobile-quality user experience (UX) to the desktop.
-I do this by modernizing the software stack and by replacing certain assumptions
-about traditional OS design with careful UX-driven consideration.
+carbonOS is a Linux-based operating system that I created and maintain. It's
+primary goal is to bring a mobile/Chromebook level of stability, security, and
+UX to the Linux desktop. I do this by modernizing the software stack and
+replacing certain assumptions made by traditional Linux distributions.
 
-For example, traditional Linux distributions are all about packages. Such an OS will
-distribute itself as a collection of programs that get assembled together and maintained
-by a package manager. System updates are simply a collection of package updates, and
-the package manager is the primary way for the user to install the software they want to
-use. This system is both an amazing technical feat and the downfall of the Linux user
-experience. Users do not care about packages or Linux tradition; users care about their
-work and the apps they use to get it done. carbonOS replaces a package manager with
-two separate subsystems: an app store and a system update manager. Furthermore,
-carbonOS protects the operating system's files through various mechanisms. These technical
-decisions heavily impact user experience: the OS can now silently update itself in the
-background, and it can even undo faled updates. The very core design decisions of
-carbonOS ensure that, to a user, it is a piece of software that always works and that
-they can rely on to run their apps.
+For example: traditional Linux distributions are all about packages. Such an OS
+will distribute itself as a collection of programs that get assembled together
+and maintained by a package manager on the client system. System updates are
+simply a collection of package updates, and the package manager is the primary
+way for the user to install the software they need to use.
+
+I posit that most users don't actually care about packages or Linux tradition.
+Users care about being able to do their work, by using the apps they need to use.
+Package managers are not necessarily productive to that end, and often they
+end up inhibiting users' understanding of their systems: packages blur the line
+between OS and App, which can lead to user confusion. Packages also make systems
+fragile, because they allow users to take apart their systems in ways that leave
+them *somewhat* functional. A catastrophic example of all these forces working
+together against users is the instance when Linus from LTT accidentally
+uninstalled his desktop environment while trying to install Steam and play some
+games ([video](https://www.youtube.com/watch?v=0506yDSgU7M))
+
+carbonOS replaces a package manager with two separate subsystems: an image-based
+OS updater, and an app store. This allows carbonOS to protect the operating
+system's files through various mechanisms, while users can continue installing
+whatever apps they want. This system also has a positive impact on UX: the OS can
+silently update itself in the background, and it can even undo failed system
+updates!
+
+Currently, I have work ongoing to implement secure-boot and TPM-backed data
+encryption into carbonOS. This means that, on startup, carbonOS will cryptographically
+verify the integrity of every bit of OS code, and the system will boot and decrypt
+user data only if the system hasn't been tampered with.
 
 Working on carbonOS has given me huge amounts of computer science experience. I
-learned about OS design, about orchestrating large software stacks, and about
-low-level programming languages. I learned how to debug software through multiple
+learned about OS design, about putting together large software stacks, and about
+low-level programming languages. I learned how to chase bugs through multiple
 layers in an OS and how to trace through code in low-level software. I learned
 about the firmware, the boot process, and about the bootstrapping an OS has to go
 through to get itself running. I learned about maintaining and updating large
 software systems. I learned a lot about the various layers of the Linux graphical
-UI stack. Working on carbonOS has been equally as challenging as it has been
-rewarding.
+UI stack. And through carbonOS I am learning more about OS development every day.
+
+[Project Website](https://carbon.sh)
+
+---
+
+### Caesar Creek Software (Summer 2022)
+
+For [CC-SW](https://www.cc-sw.com/) I built a tool that automates creation
+and management of Wireguard VPNs on public clouds (DigitalOcean, Google Cloud,
+and Vultr). 
+
+Basically it worked like this: you can create tunnel by listing a cloud + datacenter
+to route through: `tunnel create --hop digitalocean:nyc1 tunName`. This creates
+a VPS in the datacenter and configures it to be Wireguard VPN. Once the tunnel
+is up, you can use it by running software in it: `tunnel run tunName command`.
+Whatever you run in a tunnel will only have access to the internet through the
+tunnel. When you're done using it, you can clean up by destroying the VPS:
+`tunnel destroy tunName`.
+
+---
+
+### Graphite Desktop Environment (2018-2022)
+
+The Graphite Desktop Environment (GDE) was the GUI of carbonOS from 2018
+through 2022 (it was replaced with GNOME shell in October 2023). It ran on top
+of the [Wayfire](https://wayfire.org/) Wayland compositor, and used GTK to
+implement the essential components of a Linux desktop. Here's a screenshot
+of what it looked like:
 
 ![carbonOS's Graphical Environment](/assets/gde.png)
 
-[Project Website](https://carbon.sh)
+GDE development has exposed me to a comprehensive list of technologies that
+power the GNOME desktop stack, and has given me experience working with and
+developing for them. I have the experience that gives me an intricate
+understanding of how GNOME and GNOME-like desktops function: what components
+provide what functionality, how the session is started, etc.
+
+[Project Archive](https://gitlab.com/groups/carbonOS/gde/-/archived)
+
+---
+
+### Upstream Contributions (ongoing)
+
+As part of my work with carbonOS and related projects, I've contributed code
+to various upstream projects. Here are some of my contributions to notable
+upstream projects (some of which are still being reviewed):
+
+- systemd [#21570](https://github.com/systemd/systemd/pull/21570): Added
+  functionality to the systemd-boot stub (part of systemd's
+  [UKI](https://uapi-group.org/specifications/specs/unified_kernel_image/)
+  framework), to load [credentials](https://systemd.io/CREDENTIALS/) from
+  a system-wide location in the ESP. This allows multiple UKI images to share
+  credentials on a given system.
+- find-debuginfo [patch](https://sourceware.org/pipermail/debugedit/2022-June/000155.html):
+  `find-debuginfo` used to be part of RPM, and was used to separate debuginfo
+  from ELF binaries as part of a package build. It has since been upstreamed into
+  the [debugedit](https://sourceware.org/debugedit/) project. My patch further
+  decouples `find-debuginfo` from the RPM build environment, while maintaining
+  backwards compatibility
+- mutter [!2653](https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2653):
+  Researched the default UI scale of various HiDPI devices sold today. Used the
+  data I collected to replace Mutter's scale-factor selection code with an 
+  algorithm that picks much more appropriate scale factors.
+- gnome-shell [!2507](https://gitlab.gnome.org/GNOME/gnome-shell/-/merge_requests/2507):
+  Implemented a new mode for GNOME that temporarily inhibits the system's
+  auto-suspend, for situations where auto-suspend would get in the way of a
+  user's work.
 
 ---
 
