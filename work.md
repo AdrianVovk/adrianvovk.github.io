@@ -11,6 +11,12 @@ primary goal is to bring a mobile/Chromebook level of stability, security, and
 UX to the Linux desktop. I do this by modernizing the software stack and
 replacing certain assumptions made by traditional Linux distributions.
 
+Part of carbonOS's philosophy comes from my interest in the intersection between
+complex software stacks (like an OS) and UX. I believe that apps cannot provide
+users with great experiences if the platform they are running on is not designed
+from the ground up to focus on UX. Analogously, a platform cannot provide a good
+UX unless its architecture is built on a foundation of usability and robustness.  
+
 For example: traditional Linux distributions are all about packages. Such an OS
 will distribute itself as a collection of programs that get assembled together
 and maintained by a package manager on the client system. System updates are
@@ -25,15 +31,17 @@ between OS and App, which can lead to user confusion. Packages also make systems
 fragile, because they allow users to take apart their systems in ways that leave
 them *somewhat* functional. A catastrophic example of all these forces working
 together against users is the instance when Linus from LTT accidentally
-uninstalled his desktop environment while trying to install Steam and play some
-games ([video](https://www.youtube.com/watch?v=0506yDSgU7M))
+uninstalled his desktop environment while trying to install Steam
+([video](https://www.youtube.com/watch?v=0506yDSgU7M))
 
 carbonOS replaces a package manager with two separate subsystems: an image-based
 OS updater, and an app store. This allows carbonOS to protect the operating
 system's files through various mechanisms, while users can continue installing
-whatever apps they want. This system also has a positive impact on UX: the OS can
-silently update itself in the background, and it can even undo failed system
-updates!
+whatever apps they want. This system allows carbonOS to silently update itself in
+the background, and it can even undo failed system updates! This model provides
+the robustness necessary to build a great UX on top of it: users don't ever have
+to open the terminal, since things that are dangerous on a traditional
+package-based system are now perfectly safe to do automatically in carbonOS. 
 
 Currently, I have work ongoing to implement secure-boot and TPM-backed data
 encryption into carbonOS. This means that, on startup, carbonOS will cryptographically
