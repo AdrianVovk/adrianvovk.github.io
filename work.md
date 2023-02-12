@@ -175,19 +175,26 @@ across a bunch of git repos [here](https://github.com/SubstanceMobile)
 
 ### GEM (2014-2017)
 
-GEM was a music player app that I developed in response to a design language
-created by Google in 2014 called Material Design. At their demo, Google showcased
-a music player that many people, including myself, fell in love with on sight.
-Google later confirmed that their demo was just concept art and that they were
-not working on building a music player that looked like that. So, with no
-experience in Java or Android, I decided to take up the challenge of building
-such an app myself.
+GEM ("Google Experience Music") was a music player app that I developed in
+response to a design language created by Google in 2014 called Material Design.
+At their demo, Google showcased a music player that many people, including myself,
+fell in love with on sight. Google later confirmed that their demo was just
+concept art and that they were not working on building a music player that looked
+like that. So, with no experience in Java or Android, I decided to take up the
+challenge of building such an app myself.
 
 The project was a stunning success. I managed to implement Google’s concept UI in
 its entirety, and I published the app to the Google Play store to relatively
 popular reception. Google reported that I had 550 monthly active users, and I
 received emails from a Chinese app store asking me if they could translate my
 app into Mandarin because they have a few hundred people using it in China.
+
+GEM also became part of the Substance Project, which was an effort to replace
+AOSP's aging and abandoned built-in apps with material design alternatives. Google
+had abandoned these apps in favor of proprietary alternatives: Camera (Google's 
+Pixel camera app), SMS (Google Messages, the RCS client), Music Player
+(Google Play Music, then YouTube Music), and many more. So, Android ROMs needed
+something new to fill the space.
 
 I taught myself Java and Android entirely through this project, and it directly
 led to the creation of two Android libraries that other apps used back then. I
