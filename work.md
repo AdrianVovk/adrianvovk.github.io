@@ -166,7 +166,7 @@ of the Atom text editor and related plugins. It was nearly feature-complete,
 with good Git integration, project management, UI tweaks and usability improvements,
 and complete support for Gradle and specifically the Substance SDK plugin.
 
-Unfortunately, a comindation of schoolwork and burn-out killed this project.
+Unfortunately, a combination of schoolwork and burn-out killed this project.
 
 It's hard to give a single link to a "project website" because it's scattered
 across a bunch of git repos [here](https://github.com/SubstanceMobile)
