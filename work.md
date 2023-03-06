@@ -103,12 +103,6 @@ As part of my work with carbonOS and related projects, I've contributed code
 to various upstream projects. Here are some of my contributions to notable
 upstream projects (some of which are still being reviewed):
 
-- systemd [#21570](https://github.com/systemd/systemd/pull/21570): Added
-  functionality to the systemd-boot stub (part of systemd's
-  [UKI](https://uapi-group.org/specifications/specs/unified_kernel_image/)
-  framework), to load [credentials](https://systemd.io/CREDENTIALS/) from
-  a system-wide location in the ESP. This allows multiple UKI images to share
-  credentials on a given system.
 - find-debuginfo [patch](https://sourceware.org/pipermail/debugedit/2022-June/000155.html):
   `find-debuginfo` used to be part of RPM, and was used to separate debuginfo
   from ELF binaries as part of a package build. It has since been upstreamed into
@@ -123,6 +117,38 @@ upstream projects (some of which are still being reviewed):
   Implemented a new mode for GNOME that temporarily inhibits the system's
   auto-suspend, for situations where auto-suspend would get in the way of a
   user's work.
+- And some more minor patches:
+  - systemd [#18522](https://github.com/systemd/systemd/pull/18522): Let systemd-tmpfiles
+    create subvolumes on systems using libostree with Btrfs
+  - systemd [#21570](https://github.com/systemd/systemd/pull/21570): Let systemd-boot stub
+    load [credentials](https://systemd.io/CREDENTIALS/) from a system-wide location in the
+    ESP, which allows multiple [UKI](https://uapi-group.org/specifications/specs/unified_kernel_image/)s
+    to share credentials
+  - systemd [#26643](https://github.com/systemd/systemd/pull/26643): Fixed bug where gpt-auto
+    mounted ESP to /boot instead of /efi on systems where `root=tmpfs`
+  - systemd [#26645](https://github.com/systemd/systemd/pull/26645): Let systemd create
+    a /lib64 -> /usr/lib symlink, for systems that make use of Arch-style multilib (like carbonOS)
+  - plymouth [!131](https://gitlab.freedesktop.org/plymouth/plymouth/-/merge_requests/131): Fixed
+    bug where Plymouth failed to render a fallback logo when
+    [BGRT](https://learn.microsoft.com/en-us/windows-hardware/drivers/bringup/boot-screen-components)
+    is unavailable.
+
+I've also committed to working on some more major contributions:
+
+- AccountsService ([link](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/issues/89#note_1766514)):
+  Implementing a systemd-homed backend
+- systemd ([link](https://lists.freedesktop.org/archives/systemd-devel/2023-March/048862.html)):
+  Adding pluggable download backends for systemd-sysupdate
+- systemd ([link](https://lists.freedesktop.org/archives/systemd-devel/2023-March/048862.html)):
+  Implementing a dbus service for systemd-sysupdate
+- systemd ([link](https://lists.freedesktop.org/archives/systemd-devel/2023-March/048862.html))
+  Implementing a `--all` mode for systemd-sysupdate which updates the OS, all sysexts, portable images, etc.
+
+Finally I have some contributions I'd like to make and hopefully will get to one day:
+
+- Upstreaming a systemd service for cups-pk-helper
+- Port FreeBSD's `unzip` command, which is an infozip-compatible frontend for libarchive, to Linux ([inspiration](https://github.com/libarchive/libarchive/issues/594))
+- Integrate gnome-software tightly with gnome-shell: [idea](https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/4752#note_1615197)
 
 ---
 
