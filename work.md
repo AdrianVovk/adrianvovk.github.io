@@ -117,6 +117,13 @@ upstream projects (some of which are still being reviewed):
   Implemented a new mode for GNOME that temporarily inhibits the system's
   auto-suspend, for situations where auto-suspend would get in the way of a
   user's work.
+- systemd [#27794](https://github.com/systemd/systemd/pull/27794): Add a way for systemd-sysupdate
+  to put files into $BOOT as defined by the Boot Loader Specification
+- systemd [#27792](https://github.com/systemd/systemd/pull/27792): Implement systemd-installer-generator,
+  which allows a single OS disk image to differentiate between "installer" behavior (don't persist changes,
+  present installer UI) and "installed" behavior (act like a normal OS).
+- libarchive [#1873](https://github.com/libarchive/libarchive/pull/1873): Port over FreeBSD's `unzip` utility,
+  which allows libarchive to act as a drop-in replacement for Info-ZIP's `unzip` command.
 - And some more minor patches:
   - systemd [#18522](https://github.com/systemd/systemd/pull/18522): Let systemd-tmpfiles
     create subvolumes on systems using libostree with Btrfs
@@ -132,6 +139,10 @@ upstream projects (some of which are still being reviewed):
     bug where Plymouth failed to render a fallback logo when
     [BGRT](https://learn.microsoft.com/en-us/windows-hardware/drivers/bringup/boot-screen-components)
     is unavailable.
+  - systemd [#28052](https://github.com/systemd/systemd/pull/28052): Configure gpt-auto to try an empty
+    password for disk decryption. This allows for systemd-repart to enroll an empty password that can
+    then be replaced with a real password (or tpm2/fido/pkcs11/etc) in the first boot experience
+    
 
 I've also committed to working on some more major contributions:
 
@@ -141,13 +152,10 @@ I've also committed to working on some more major contributions:
   Adding pluggable download backends for systemd-sysupdate
 - systemd ([link](https://lists.freedesktop.org/archives/systemd-devel/2023-March/048862.html)):
   Implementing a dbus service for systemd-sysupdate
-- systemd ([link](https://lists.freedesktop.org/archives/systemd-devel/2023-March/048862.html))
-  Implementing a `--all` mode for systemd-sysupdate which updates the OS, all sysexts, portable images, etc.
 
 Finally I have some contributions I'd like to make and hopefully will get to one day:
 
 - Upstreaming a systemd service for cups-pk-helper
-- Port FreeBSD's `unzip` command, which is an infozip-compatible frontend for libarchive, to Linux ([inspiration](https://github.com/libarchive/libarchive/issues/594))
 - Integrate gnome-software tightly with gnome-shell: [idea](https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/4752#note_1615197)
 
 ---
