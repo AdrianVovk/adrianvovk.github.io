@@ -139,10 +139,10 @@ upstream projects (some of which are still being reviewed):
     bug where Plymouth failed to render a fallback logo when
     [BGRT](https://learn.microsoft.com/en-us/windows-hardware/drivers/bringup/boot-screen-components)
     is unavailable.
-  - systemd [#28052](https://github.com/systemd/systemd/pull/28052): Configure gpt-auto to try an empty
-    password for disk decryption. This allows for systemd-repart to enroll an empty password that can
-    then be replaced with a real password (or tpm2/fido/pkcs11/etc) in the first boot experience
-    
+  - systemd [28061](https://github.com/systemd/systemd/pull/28061): Add a new `systemd-empty` token
+    type to `cryptsetup`. This allows an empty key to be enrolled into an ecrypted volume to disable
+    encryption without decrypting the data on disk. `systemd-cryptsetup` can then automatically unlock
+    the volume without the performance hit of `try-empty-password`.
 
 I've also committed to working on some more major contributions:
 
