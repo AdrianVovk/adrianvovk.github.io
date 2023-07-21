@@ -7,57 +7,110 @@ permalink: /work
 ### carbonOS (2018-present)
 
 carbonOS is a Linux-based operating system that I created and maintain. It's
-primary goal is to bring a mobile/Chromebook level of stability, security, and
+primary goal is to bring a mobile/ChromeBook level of stability, security, and
 UX to the Linux desktop. I do this by modernizing the software stack and
 replacing certain assumptions made by traditional Linux distributions.
 
-Part of carbonOS's philosophy comes from my interest in the intersection between
-complex software stacks (like an OS) and UX. I believe that apps cannot provide
-users with great experiences if the platform they are running on is not designed
-from the ground up to focus on UX. Analogously, a platform cannot provide a good
-UX unless its architecture is built on a foundation of usability and robustness.  
+Unlike a traditional distro, carbonOS does not have a package manager. Instead, it
+replaces all the necessary functionality of a package manager with three separate
+components:
 
-For example: traditional Linux distributions are all about packages. Such an OS
-will distribute itself as a collection of programs that get assembled together
-and maintained by a package manager on the client system. System updates are
-simply a collection of package updates, and the package manager is the primary
-way for the user to install the software they need to use.
+- An image-based A/B OS updater, like on an embedded device or a ChromeBook
+- An app store, using [Flatpak](https://flatpak.org)
+- Container runtimes (i.e. [Podman](https://podman.io)), to run traditional
+  Linux environments for the purposes of development
 
-I posit that most users don't actually care about packages or Linux tradition.
-Users care about being able to do their work, by using the apps they need to use.
-Package managers are not necessarily productive to that end, and often they
-end up inhibiting users' understanding of their systems: packages blur the line
-between OS and App, which can lead to user confusion. Packages also make systems
-fragile, because they allow users to take apart their systems in ways that leave
-them *somewhat* functional. A catastrophic example of all these forces working
-together against users is the instance when Linus from LTT accidentally
-uninstalled his desktop environment while trying to install Steam
-([video](https://www.youtube.com/watch?v=0506yDSgU7M))
+This layout allows carbonOS to protect the operating system's files via various
+mechanisms (including strong cryptographic hashing!), while users can continue
+installing whatever apps they want. This system also allows carbonOS to silently
+update itself in the background, and even rollback failed system updates. This
+makes actions that are dangerous on a traditional package-based system (i.e.
+installing updates) perfectly safe to do automatically in carbonOS.
 
-carbonOS replaces a package manager with two separate subsystems: an image-based
-OS updater, and an app store. This allows carbonOS to protect the operating
-system's files through various mechanisms, while users can continue installing
-whatever apps they want. This system allows carbonOS to silently update itself in
-the background, and it can even undo failed system updates! This model provides
-the robustness necessary to build a great UX on top of it: users don't ever have
-to open the terminal, since things that are dangerous on a traditional
-package-based system are now perfectly safe to do automatically in carbonOS. 
+This model provides the robustness necessary to build a great UX: users shouldn't
+ever have to think about the OS, let alone open a terminal to maintain it. 
 
-Currently, I have work ongoing to implement secure-boot and TPM-backed data
-encryption into carbonOS. This means that, on startup, carbonOS will cryptographically
-verify the integrity of every bit of OS code, and the system will boot and decrypt
-user data only if the system hasn't been tampered with.
+Working on carbonOS has taught me many useful skills:
 
-Working on carbonOS has given me huge amounts of computer science experience. I
-learned about OS design, about putting together large software stacks, and about
-low-level programming languages. I learned how to chase bugs through multiple
-layers in an OS and how to trace through code in low-level software. I learned
-about the firmware, the boot process, and about the bootstrapping an OS has to go
-through to get itself running. I learned about maintaining and updating large
-software systems. I learned a lot about the various layers of the Linux graphical
-UI stack. And through carbonOS I am learning more about OS development every day.
+- Packaging software for Linux distros
+- Quickly reading through and understanding existing code bases
+- Tracking down bugs in multiple layers of a software stack
+- Tracking down bugs in hard-to-debug environments (i.e. initramfs in a Linux system)
+- Writing systems-level software
 
 [Project Website](https://carbon.sh)
+
+---
+
+### Upstream Contributions (ongoing)
+
+As part of my work with carbonOS and related projects, I've contributed code
+to various upstream projects. Here are some of my contributions to notable
+upstream projects (some of which are still being reviewed):
+
+- systemd [#28134](https://github.com/systemd/systemd/pull/28134): Designed, implemented, and
+  documented a new dbus service, `systemd-sysupdated`, which allows unprivilaged users to update
+  various components of the system. The service can update the host system, systemd-sysexts,
+  systemd-confexts, systemd portable services, and potentially any other resource on the system,
+  all in parallel. Also implemented a companion CLI app: `updatectl`. (NOT MERGED YET)
+- mutter [!2653](https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2653):
+  Researched the default UI scale factors of various HiDPI devices on the market
+  today. Used the data I collected to replace Mutter's scale-factor selection code
+  with an algorithm that picks much better scale factors. This enables mutter to
+  be much more usable on HiDPI laptops and phones especially.
+- debugedit [patch](https://sourceware.org/pipermail/debugedit/2022-June/000155.html):
+  `find-debuginfo` used to be part of RPM, and was used to separate debuginfo
+  from ELF binaries as part of a package build. It has since been upstreamed into
+  the [debugedit](https://sourceware.org/debugedit/) project. My patch further
+  decouples `find-debuginfo` from the RPM build environment, while maintaining
+  backwards compatibility. (NOT MERGED YET)
+- gnome-shell [!2507](https://gitlab.gnome.org/GNOME/gnome-shell/-/merge_requests/2507):
+  Implemented a new mode for GNOME that temporarily inhibits the system's
+  auto-suspend, for situations where auto-suspend would get in the way of a
+  user's work. (NOT MERGED YET)
+- systemd [#27792](https://github.com/systemd/systemd/pull/27792):
+  Implement systemd-installer-generator, which allows a single OS disk image to both be an installer
+  (like a LiveOS ISO in a traditional distro) and an installed "normal" OS. The image can differentiate
+  its behavior either explicitly (via a Linux kernel command line option) or automatically (by detecting
+  if it's booting off of removable storage). (NOT MERGED YET)
+- libarchive [#1873](https://github.com/libarchive/libarchive/pull/1873): Port over FreeBSD's
+  `unzip` utility, which allows libarchive to act as a drop-in replacement for Info-ZIP's `unzip`
+  command. This allows distributions to drop the poorly-maintained Info-ZIP package and instead
+  rely on `libarchive`'s robust and actively-maintained implementation.
+- systemd [#28061](https://github.com/systemd/systemd/pull/28061): Added a new `systemd-empty` token
+  type to `cryptsetup`. This allows an empty key to be enrolled into an ecrypted volume to disable
+  encryption without actually decrypting the data on disk. `systemd-cryptsetup` can then automatically
+  unlock the volume without the performance hit of `try-empty-password`.
+- And some more minor patches:
+  - systemd [#18522](https://github.com/systemd/systemd/pull/18522): Let systemd-tmpfiles
+    create Btrfs subvolumes on systems using libostree
+  - systemd [#21570](https://github.com/systemd/systemd/pull/21570): Let the systemd-boot stub
+    load [credentials](https://systemd.io/CREDENTIALS/) from a system-wide location in the
+    ESP, which allows multiple [UKI](https://uapi-group.org/specifications/specs/unified_kernel_image/)s
+    to share credentials
+  - systemd [#26643](https://github.com/systemd/systemd/pull/26643): Fixed bug where the gpt-auto
+    generator mounted the ESP to /boot instead of /efi on systems where `root=tmpfs`
+  - systemd [#26645](https://github.com/systemd/systemd/pull/26645): Let systemd automatically create
+    a /lib64 -> /usr/lib symlink, for systems that make use of Arch-style multilib (like carbonOS)
+  - plymouth [!131](https://gitlab.freedesktop.org/plymouth/plymouth/-/merge_requests/131): Fixed
+    bug where Plymouth failed to render a fallback logo when
+    [BGRT](https://learn.microsoft.com/en-us/windows-hardware/drivers/bringup/boot-screen-components)
+    is unavailable.
+  - systemd [#27794](https://github.com/systemd/systemd/pull/27794): Added a way for systemd-sysupdate
+    to put files (such as updated kernels) into the $BOOT partition, as defined by the
+    [Boot Loader Specification](https://uapi-group.org/specifications/specs/boot_loader_specification/)
+
+I've also committed to working on some more major contributions:
+
+- AccountsService ([link](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/issues/89#note_1766514)):
+  Implementing a systemd-homed backend
+- systemd ([link](https://lists.freedesktop.org/archives/systemd-devel/2023-March/048862.html)):
+  Adding pluggable download backends for systemd-sysupdate
+
+Finally I have some contributions I'd like to make and hopefully will get to one day:
+
+- Upstreaming a systemd service for cups-pk-helper
+- Integrate gnome-software tightly with gnome-shell: [idea](https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/4752#note_1615197)
 
 ---
 
@@ -69,11 +122,11 @@ and Vultr).
 
 Basically it worked like this: you can create tunnel by listing a cloud + datacenter
 to route through: `tunnel create --hop digitalocean:nyc1 tunName`. This creates
-a VPS in the datacenter and configures it to be Wireguard VPN. Once the tunnel
-is up, you can use it by running software in it: `tunnel run tunName command`.
+a VPS in the specified datacenter and configures it to be Wireguard VPN. Once
+the tunnel is up, you can use it by running software in it: `tunnel run tunName command`.
 Whatever you run in a tunnel will only have access to the internet through the
-tunnel. When you're done using it, you can clean up by destroying the VPS:
-`tunnel destroy tunName`.
+tunnel. When you're done using the tunnel (`tunnel destroy tunName`) the VPS
+is destroyed.
 
 ---
 
@@ -94,69 +147,6 @@ understanding of how GNOME and GNOME-like desktops function: what components
 provide what functionality, how the session is started, etc.
 
 [Project Archive](https://gitlab.com/groups/carbonOS/gde/-/archived)
-
----
-
-### Upstream Contributions (ongoing)
-
-As part of my work with carbonOS and related projects, I've contributed code
-to various upstream projects. Here are some of my contributions to notable
-upstream projects (some of which are still being reviewed):
-
-- find-debuginfo [patch](https://sourceware.org/pipermail/debugedit/2022-June/000155.html):
-  `find-debuginfo` used to be part of RPM, and was used to separate debuginfo
-  from ELF binaries as part of a package build. It has since been upstreamed into
-  the [debugedit](https://sourceware.org/debugedit/) project. My patch further
-  decouples `find-debuginfo` from the RPM build environment, while maintaining
-  backwards compatibility
-- mutter [!2653](https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2653):
-  Researched the default UI scale of various HiDPI devices sold today. Used the
-  data I collected to replace Mutter's scale-factor selection code with an 
-  algorithm that picks much more appropriate scale factors.
-- gnome-shell [!2507](https://gitlab.gnome.org/GNOME/gnome-shell/-/merge_requests/2507):
-  Implemented a new mode for GNOME that temporarily inhibits the system's
-  auto-suspend, for situations where auto-suspend would get in the way of a
-  user's work.
-- systemd [#27794](https://github.com/systemd/systemd/pull/27794): Add a way for systemd-sysupdate
-  to put files into $BOOT as defined by the Boot Loader Specification
-- systemd [#27792](https://github.com/systemd/systemd/pull/27792): Implement systemd-installer-generator,
-  which allows a single OS disk image to differentiate between "installer" behavior (don't persist changes,
-  present installer UI) and "installed" behavior (act like a normal OS).
-- libarchive [#1873](https://github.com/libarchive/libarchive/pull/1873): Port over FreeBSD's `unzip` utility,
-  which allows libarchive to act as a drop-in replacement for Info-ZIP's `unzip` command.
-- And some more minor patches:
-  - systemd [#18522](https://github.com/systemd/systemd/pull/18522): Let systemd-tmpfiles
-    create subvolumes on systems using libostree with Btrfs
-  - systemd [#21570](https://github.com/systemd/systemd/pull/21570): Let systemd-boot stub
-    load [credentials](https://systemd.io/CREDENTIALS/) from a system-wide location in the
-    ESP, which allows multiple [UKI](https://uapi-group.org/specifications/specs/unified_kernel_image/)s
-    to share credentials
-  - systemd [#26643](https://github.com/systemd/systemd/pull/26643): Fixed bug where gpt-auto
-    mounted ESP to /boot instead of /efi on systems where `root=tmpfs`
-  - systemd [#26645](https://github.com/systemd/systemd/pull/26645): Let systemd create
-    a /lib64 -> /usr/lib symlink, for systems that make use of Arch-style multilib (like carbonOS)
-  - plymouth [!131](https://gitlab.freedesktop.org/plymouth/plymouth/-/merge_requests/131): Fixed
-    bug where Plymouth failed to render a fallback logo when
-    [BGRT](https://learn.microsoft.com/en-us/windows-hardware/drivers/bringup/boot-screen-components)
-    is unavailable.
-  - systemd [28061](https://github.com/systemd/systemd/pull/28061): Add a new `systemd-empty` token
-    type to `cryptsetup`. This allows an empty key to be enrolled into an ecrypted volume to disable
-    encryption without decrypting the data on disk. `systemd-cryptsetup` can then automatically unlock
-    the volume without the performance hit of `try-empty-password`.
-
-I've also committed to working on some more major contributions:
-
-- AccountsService ([link](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/issues/89#note_1766514)):
-  Implementing a systemd-homed backend
-- systemd ([link](https://lists.freedesktop.org/archives/systemd-devel/2023-March/048862.html)):
-  Adding pluggable download backends for systemd-sysupdate
-- systemd ([link](https://lists.freedesktop.org/archives/systemd-devel/2023-March/048862.html)):
-  Implementing a dbus service for systemd-sysupdate
-
-Finally I have some contributions I'd like to make and hopefully will get to one day:
-
-- Upstreaming a systemd service for cups-pk-helper
-- Integrate gnome-software tightly with gnome-shell: [idea](https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/4752#note_1615197)
 
 ---
 
