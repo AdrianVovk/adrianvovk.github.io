@@ -111,6 +111,7 @@ Finally I have some contributions I'd like to make and hopefully will get to one
 
 - Upstreaming a systemd service for cups-pk-helper
 - Integrate gnome-software tightly with gnome-shell: [idea](https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/4752#note_1615197)
+- systemd-storagetm USB bulk backend (via Linux's composite gadget support), and exporing homed home areas via this functionality.
 
 ---
 
